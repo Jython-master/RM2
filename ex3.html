@@ -5,22 +5,40 @@
 		<meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible">
 		<title>ex3</title>
+        <style>
+            .hidden{
+                visibility: hidden;
+            }
+        </style>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script>
-            $().ready(function(){
-                var video = document.getElementById("vid");
-                $("#idd").click(function(){
-                    $("#attributes").html("Current source: "+video.currentSrc+"<br/>controls: "+video.controls+"<br/>autoplay: "+video.autoplay+"<br/>loop: "+video.loop+"<br/>poster: "+video.poster+"<br/>id: "+video.id+"<br/>height: "+video.height+"<br/>width: "+video.width);
-                });
-            });
-        </script>
 	</head>
 	<body>
-        <video id="vid" name="videoo" poster="the-who.jpg" controls loop>
+        <video id="videoo" onloadedmetadata="run()" poster="the-who.jpg" controls>>
             <source src="poplish%20mp4.mp4"/>
             <source src="poplish%20mp4.ogv"/>
         </video>
         <input type="button" id="idd" value="show attributes">
         <div id="attributes"></div>
+        <div id="he" class="hidden"></div>
+        <div id="wi" class="hidden"></div>
+        <div id="cs" class="hidden"></div>
+        <script>
+            var video = document.getElementById("videoo");
+            $().ready(function(){
+                $("#idd").click(function(){
+                    $("#attributes").html("Current source: "+video.currentSrc+"<br/>controls: "+video.controls+"<br/>autoplay: "+video.autoplay+"<br/>loop: "+video.loop+"<br/>poster: "+video.poster+"<br/>id: "+video.id);
+                    $("#wi").removeClass("hidden");
+                    $("#he").removeClass("hidden");
+                    video.addEventListener('loadedmetadata', function(){
+                        $("#he").html("height "+videoo.videoHeight);
+                        $("#wi").html("width "+videoo.videoWidth);
+                    });
+                });
+            });
+            function run(){
+                    $("#he").html("height "+videoo.videoHeight);
+                    $("#wi").html("width "+videoo.videoWidth);
+                }
+        </script>
 	</body>
 </html>
